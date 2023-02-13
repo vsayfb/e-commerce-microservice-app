@@ -1,0 +1,36 @@
+services:
+  proxy:
+    container_name: app-proxy
+    build: ./proxy
+    ports:
+      - 80:80
+    volumes:
+      - ./proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+    environment:
+      - NGINX_PORT=80
+
+  customer_service:
+    container_name: customer
+    build: ./customer
+    volumes:
+      - ./customer:/app
+    ports:
+      - 81:81
+
+  product_service:
+    container_name: product
+    build: ./product
+    volumes:
+      - ./product:/app
+    ports:
+      - 82:82
+    environment:
+      - platform=linux/amd64
+
+  basket_service:
+    container_name: basket
+    build: ./basket
+    volumes:
+      - ./basket:/app
+    ports:
+      - 83:83
