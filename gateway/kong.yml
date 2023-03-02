@@ -1,0 +1,32 @@
+_format_version: "3.0"
+
+_transform: true
+
+_comment: This is a top level comment, and must be a string
+_ignore:
+  - This array entry will be ignored
+  - as well as this one
+
+services:
+  - name: customer_service
+    url: http://customer:81/
+
+  - name: product_service
+    url: http://product:82/
+
+  - name: basket_service
+    url: http://basket:83/
+
+routes:
+  - name: customer-requests
+    service: customer_service
+    paths:
+      - /customers
+  - name: product-requests
+    service: product_service
+    paths:
+      - /products
+  - name: basket-requests
+    service: basket_service
+    paths:
+      - /basket
